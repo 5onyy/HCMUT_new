@@ -1,0 +1,62 @@
+cur_size = 1
+cur: ABC--123
+table: 1
+ABC--123
+
+cur_size = 2
+cur: BCD-789
+table: 2
+ABC--123
+BCD-789
+
+cur_size = 3
+cur: AAA-153
+table: 3
+ABC--123
+AAA-153
+BCD-789
+
+cur_size = 4
+cur: CGH-234
+table: 4
+ABC--123
+AAA-153
+CGH-234
+BCD-789
+
+waiting line: 
+NXS-999
+waiting line: 
+NXS-999
+CKA-222
+BLUE:
+cur: AAA-153
+table: 2
+AAA-153
+CGH-234
+
+cur_size = 3
+cur: NXS-999
+table: 3
+AAA-153
+NXS-999
+CGH-234
+
+cur_size = 4
+cur: CKA-222
+table: 4
+AAA-153
+CKA-222
+NXS-999
+CGH-234
+
+purple
+
+reversal
+
+unlimited_void
+
+domain_expansion
+
+light 3
+
