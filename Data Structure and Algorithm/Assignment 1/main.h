@@ -4,6 +4,8 @@
 #include <string>
 #include <math.h>
 
+
+
 using namespace std;
 
 class Restaurant {
@@ -27,8 +29,8 @@ class Restaurant {
 				customer* next;
 			public:
 				customer(){}
-				~customer (){}
 				customer(string na, int e, customer* p, customer *ne): name(na), energy(e), prev(p), next(ne){}
+				~customer(){}
 				void print() {
 					cout << name << "-" << energy << endl;
 				}

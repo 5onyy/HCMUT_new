@@ -1,4 +1,3 @@
-#include "main.h"
 #include "Restaurant.cpp"
 #include <fstream>
 
@@ -7,8 +6,8 @@ int MAXSIZE;
 void simulate(string filename, imp_res* r)
 {
 	ifstream ss(filename);
-	freopen("test.out","w",stdout);
 	string str, maxsize, name, energy, num;
+	freopen("test.out","w",stdout);
 	while(ss >> str)
 	{ 
 		if(str == "MAXSIZE")
@@ -52,10 +51,13 @@ void simulate(string filename, imp_res* r)
 }
 
 int main(int argc, char* argv[]) {
+	//if (argc < 2)
+    //	return 1;
+	//  string fileName = argv[1];
 	imp_res* r = new imp_res();
 	string fileName = "test.txt";
     simulate(fileName, r);
-	delete r;
+  	delete r;
 	return 0;
 }
 
