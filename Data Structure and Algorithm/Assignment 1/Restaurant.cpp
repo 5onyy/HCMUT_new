@@ -2,8 +2,6 @@
 
 #define db(x) { cout << #x << " = "; cout << (x) << endl; }
 
-extern int MAXSIZE;
-
 template <typename E> class Link {
 public:
   E element;      // Value for this node
@@ -24,7 +22,7 @@ template <typename E> class LQueue{		//dummy head (nullptr)
 	LQueue(int sz = 0) // Constructor 
 		{ front = rear = new Link<E>(); sze = 0; }
 
-	~LQueue() {print(); clear(); delete front; }      // Destructor
+	~LQueue() {/* print();  */ clear(); delete front; }      // Destructor
 
 	void swap(Link<E> *&x, Link<E> *&y){
 		Link<E>* z = new Link<E>();
@@ -84,7 +82,6 @@ template <typename E> class LQueue{		//dummy head (nullptr)
 	int size() { return sze; }
 	void print(){
 		if (size() == 0)	return;
-				cout<<"waiting line: \n";
 		Link<E>* tmp = front->next;
 		while (tmp != NULL){
 			tmp->element.print();
@@ -164,8 +161,6 @@ template <typename E> class LQueue{		//dummy head (nullptr)
 		}
 		return ans;
 	}
-
-
 };
 
 
@@ -293,14 +288,15 @@ class imp_res final : public Restaurant
 		}
 		void RED(string name, int energy){
 			if (cur_size == 0){
+				if (energy == 0)	return;
 				customer *cus = new customer (name, energy, nullptr, nullptr);
 				cur = cus;	cur->next = cur->prev = cur;	last = start = cur;	
 			}
-			else if (energy == 0 || check(name) || waiting.check(name))	{cout<<"Name duplicated!\n\n";	return;}	//BLUE CAN PASS, OF COURSE
+			else if (energy == 0 || check(name) || waiting.check(name))	{/* cout<<"Name duplicated!\n\n";	 */return;}	//BLUE CAN PASS, OF COURSE
 			else if (cur_size == MAXSIZE){		//PUSH TO queue	//BLUE CAN PASS BC CUR_SIZE AFTER DELETEION ALWAY < MAXSIZE
 				customer new_in(name,energy,nullptr,nullptr);
 				if (waiting.size() < MAXSIZE)	{waiting.push(new_in);	if (!order.check(name))	order.push(new_in);}	
-				waiting.print();	cout<<'\n';
+				//waiting.print();	cout<<'\n';
 				return;
 			}
 			else if (cur_size < MAXSIZE/2){	
@@ -327,15 +323,15 @@ class imp_res final : public Restaurant
 				else insert_right(name,energy);
 			}
 			cur_size++;
-			db(cur_size);
-			debug_cur();
-			debug();
+			//db(cur_size);
+			//debug_cur();
+			//debug();
 			if (cur_size <= MAXSIZE)	if (!order.check(name)) order.push(customer(name,energy,nullptr,nullptr));
 			return;
 		}
 		void BLUE(int num){
 			int possible = num;
-			cout<<"BLUE: "<<num<<'\n';
+			//cout<<"BLUE: "<<num<<'\n';
 			num = min (num,cur_size);
 			while (num--){
 				customer cus = order.at(0);
@@ -344,13 +340,14 @@ class imp_res final : public Restaurant
 				customer *tmp = (cur -> energy < 0) ? cur -> prev : cur -> next;
 				del_at(cur);
 				cur = tmp;
-				order.del_at(cus.name);
-				/* order.print();
-				cout<<'\n'; */
+				//order.del_at(cus.name);
+				//order.print();
+				//cout<<'\n'; 
 			}
-			cout<<"okok\n";
-			debug();
-			debug_cur();
+			//cout<<"okok\n";
+			//order.print();
+			//debug();
+			//debug_cur();
 			if (cur_size == 0)	start = last = NULL;
 			possible = min(waiting.size(),possible);
 			if (waiting.size() == 0)	return;
@@ -374,18 +371,17 @@ class imp_res final : public Restaurant
 					if (cmp(x,y))	continue;
 					waiting.swap(j,j-incr);
 					cnt ++;
-					db(cnt);
 				}
 			}
 			return cnt;
 		}
 
-		int shellsort(){
-			int n = waiting.size(), ans = 0;
+		int shellsort(int n){
+			int ans = 0;
 			for (int gap = n/2; gap > 2; gap/=2){
 				for (int j = 0; j < gap; j++){
 					ans += inssort(j,n-j,gap);
-					db(ans);
+					//db(ans);
 				}
 			}
 			ans += inssort(0,n,1);
@@ -393,16 +389,28 @@ class imp_res final : public Restaurant
 		}
 
 		void PURPLE(){
-			cout << "purple"<< endl;
-			waiting.print();
-			cout<<shellsort()<<'\n';
-			waiting.print();
-			cout<<'\n';
+			//cout << "purple"<< endl;
+			//waiting.print();
+			int pos = 0;
+			customer ans = waiting.at(0);
+			for (int i = 1; i < waiting.size(); i++){
+				customer x = waiting.at(i);
+				if (!cmp(x,ans)){
+					pos = i;
+					ans = x;
+				}
+			}
+			pos+=1;
+			//db(pos);
+			//db(shellsort(pos));
+			//waiting.print();
+			cout<<shellsort(pos)<<'\n';
+			//cout<<'\n';
 		}
 		void REVERSAL(){
-			cout << "REVERSAL: \n";
+			//cout << "REVERSAL: \n";
 			//db(num_of_type(0));	db(num_of_type(1));
-			debug_cur();
+			//debug_cur();
 			int cnt0 = num_of_type(0),	cnt1 = num_of_type(1);
 			customer *t1 = cur, *t2 = cur -> next, *t3 = cur, *t4 = cur -> next;
 			for (int i = 0; i < cur_size; i++, t3 = t3 -> prev)	if (t3 -> energy * cur -> energy < 0)	break;
@@ -414,11 +422,11 @@ class imp_res final : public Restaurant
 				while ( t3 -> energy * t4 -> energy < 0)	t4 = t4 -> next;
 				swap(t3,t4);
 			}
-			debug();
+			//debug();
 		}
 		void UNLIMITED_VOID(){
-			cout<<"UNLIMITED_VOID: ";
-			if (cur_size < 4)	{cout<<"Error! \n";	return;}
+			//cout<<"UNLIMITED_VOID: ";
+			if (cur_size < 4)	{/* cout<<"Error! \n"; */	return;}
 			int sum = 0, mmin =1e9, cnt = 0;
 			customer *ii = cur, *ans = NULL;
 			string name_list = "";
@@ -437,7 +445,7 @@ class imp_res final : public Restaurant
 				}
 			}
 			name_list = name_list + name_list;
-			db(cnt);
+			//db(cnt);
 			int min_energy = 1e7;
 			string _name;
 			for (int i=0; i<cnt; i++, ans = ans -> next){
@@ -446,7 +454,7 @@ class imp_res final : public Restaurant
 					_name = ans -> name;
 				}
 			}
-			db(_name);
+			//db(_name);
 			size_t t2 = name_list.find(_name) + _name.size(), t1 = t2;
 			for (; cnt > 0; cnt--, t2 = name_list.find(' ',t2 + 1)){
 				t1 = t2 - 1;
@@ -455,11 +463,11 @@ class imp_res final : public Restaurant
 				customer* p = find(s);
 				p->print();
 			}
-			cout<<'\n';
+			//cout<<'\n';
 		}
 		void DOMAIN_EXPANSION(){
-			cout << "domain_expansion" << endl;
-			db(order.sum_of_type(0));	db(order.sum_of_type(1));
+			//cout << "domain_expansion" << endl;
+			//db(order.sum_of_type(0));	db(order.sum_of_type(1));
 			int s1 = abs(order.sum_of_type(0)), s2 = order.sum_of_type(1);
 			/*cout<<"order.name_list(1): \n"<< order.name_list(1)<<'\n';
 			cout<<"order.name_list(0): \n"<< order.name_list(0)<<'\n';*/
@@ -480,21 +488,23 @@ class imp_res final : public Restaurant
 				del_at(cur);
 				cur = back_up;
 			}
-			debug();
+			//debug();
 			int possible = min(MAXSIZE - cur_size, waiting.size());
 			while (possible -- ){
 				customer cus = waiting.pop();
 				RED(cus.name,cus.energy);
 			}
-			cout<<res<<'\n';
+			cout<<res;
 		}
 		void LIGHT(int num){
-			cout << "light " << num << endl;
+			//cout << "light " << num << endl;
 			if (num == 0)	waiting.print();
-			else if (num > 0) print_from_cur();
-			else print_from_cur(0);
+			else if (num > 0) print_from_cur(true,num);
+			else print_from_cur(false,-num);
 		}
-		void print_from_cur(bool clockwise = 1){
+		void print_from_cur(bool clockwise, int cnt){
+			//db(cur_size);
+			if (cur_size == 0)	return;
 			customer *tmp = cur;
 			for (int i = 0; i < cur_size; i++){
 				tmp -> print();
@@ -504,6 +514,7 @@ class imp_res final : public Restaurant
 		}
 		void debug(){
 			cout<<"table: "<<cur_size<<'\n';
+			if (cur_size == 0)	return;
 			if (cur_size == 1)	{cur->print(); cout<<'\n'; return;}
 			customer *tmp = start;
 			while (tmp != last)
