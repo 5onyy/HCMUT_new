@@ -4,114 +4,39 @@ table: 1
 ABC--123
 
 cur_size = 2
-cur: BCD-789
+cur: BCD-456
 table: 2
 ABC--123
-BCD-789
+BCD-456
 
 cur_size = 3
-cur: AAA-153
+cur: CDE-444
 table: 3
 ABC--123
-AAA-153
-BCD-789
-
-cur_size = 4
-cur: CGH-234
-table: 4
-ABC--123
-AAA-153
-CGH-234
-BCD-789
-
-waiting line: 
-NXS-999
-
-waiting line: 
-NXS-999
-CKA--222
-
-waiting line: 
-NXS-999
-CKA--222
-hihi--235
-
-waiting line: 
-NXS-999
-CKA--222
-hihi--235
-ABCD--768
-
-waiting line: 
-NXS-999
-CKA--222
-hihi--235
-ABCD--768
+CDE-444
+BCD-456
 
 BLUE: 2
 okok
-table: 2
-AAA-153
-CGH-234
+table: 1
+CDE-444
 
-cur: AAA-153
-cur_size = 3
-cur: NXS-999
-table: 3
-AAA-153
-NXS-999
-CGH-234
-
-cur_size = 4
-cur: CKA--222
-table: 4
-AAA-153
-CKA--222
-NXS-999
-CGH-234
-
+cur: CDE-444
 purple
-waiting line: 
-hihi--235
-ABCD--768
-cnt = 1
-1
-waiting line: 
-ABCD--768
-hihi--235
+0
 
 REVERSAL: 
-cur: CKA--222
-table: 4
-NXS-999
-CKA--222
-AAA-153
-CGH-234
+cur: CDE-444
+table: 1
+CDE-444
 
-UNLIMITED_VOID: cnt = 4
-_name = CKA
-CKA--222
-AAA-153
-CGH-234
-NXS-999
-
+UNLIMITED_VOID: Error! 
 domain_expansion
-order.sum_of_type(0) = -1225
-order.sum_of_type(1) = 1386
-table: 3
-NXS-999
-AAA-153
-CGH-234
+order.sum_of_type(0) = 0
+order.sum_of_type(1) = 444
+table: 1
+CDE-444
 
-ABCD--768
-hihi--235
-CKA--222
 
 light 3
-NXS-999
-AAA-153
-CGH-234
-waiting line: 
-AAA-153
-CGH-234
-NXS-999
+CDE-444
