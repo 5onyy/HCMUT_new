@@ -4,7 +4,7 @@
 #include <string>
 #include <math.h>
 
-
+extern int MAXSIZE;
 
 using namespace std;
 

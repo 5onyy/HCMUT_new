@@ -1,42 +1,4 @@
-cur_size = 1
-cur: ABC--123
-table: 1
-ABC--123
-
-cur_size = 2
-cur: BCD-456
-table: 2
-ABC--123
-BCD-456
-
-cur_size = 3
-cur: CDE-444
-table: 3
-ABC--123
-CDE-444
-BCD-456
-
-BLUE: 2
-okok
-table: 1
-CDE-444
-
-cur: CDE-444
-purple
-0
-
-REVERSAL: 
-cur: CDE-444
-table: 1
-CDE-444
-
-UNLIMITED_VOID: Error! 
 domain_expansion
 order.sum_of_type(0) = 0
 order.sum_of_type(1) = 444
-table: 1
-CDE-444
-
-
-light 3
 CDE-444
