@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/HCMUT/CODE",
-      "program": "d:/HCMUT/CODE/build/Debug/outDebug",
+      "cwd": "d:/HCMUT/CODE/Data Structure and Algorithm/Lab_week3",
+      "program": "d:/HCMUT/CODE/Data Structure and Algorithm/Lab_week3/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
