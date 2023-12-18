@@ -9,7 +9,7 @@ int Heap<T>::getItem(T item) {
     return -1;
 }
 
-template<class T>code 
+template<class T>
 void Heap<T>::remove(T item) {
     // TODO: remove the element with value equal to item
     int index = getItem(item);
